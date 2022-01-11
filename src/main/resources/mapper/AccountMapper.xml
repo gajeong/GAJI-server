@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaji.market.mapper.AccountMapper">
+	
+    <!-- XML 파일 주석 쓰는 방법 -->
+    <!-- id명은 AccountMapper 클래스의 함수명과 똑같이 해주기 -->
+    <select id="findAll" resultType="Account">
+        SELECT	*
+        FROM 	Account
+    </select>
+
+    <select id="read" resultType="Account"> 
+        SELECT  * 
+        FROM    Account 
+        WHERE   AccountId=#{no} 
+    </select> <!-- #을 쓰면 정수는 정수열, 문자는 문자열로, $는 String --> 
+    
+    <insert id="create"> 
+        <!--selectKey resultType="string" keyProperty="AccountId" order="BEFORE">
+            SELECT MAX(AccountId)+1 FROM Account        
+        </selectKey-->   
+        INSERT 
+        INTO Account
+                (AccountId
+                ,tpAccount
+                ,AccountNm
+                ,Password
+                ,PhoneNo
+                ,ExchangeNo
+                ,MobileNo
+                ,eMail
+                ,PostNo
+                ,Addr1
+                ,Addr2
+                ,BirthDay) 
+        VALUES
+                (#{AccountId}
+                ,#{tpAccount}
+                ,#{AccountNm}
+                ,#{Password}
+                ,#{PhoneNo}
+                ,#{ExchangeNo}
+                ,#{MobileNo}
+                ,#{eMail}
+                ,#{PostNo}
+                ,#{Addr1}
+                ,#{Addr2}
+                ,#{BirthDay}) 
+    </insert> <!-- insert, update는 리턴타입 없다. select만 --> 
+    
+    <update id="update"> 
+        UPDATE Account 
+        SET tpAccount=#{tpAccount}
+            ,AccountNm=#{AccountNm}
+            ,Password=#{Password}
+            ,PhoneNo=#{PhoneNo}
+            ,ExchangeNo=#{ExchangeNo}
+            ,MobileNo=#{MobileNo}
+            ,eMail=#{eMail}
+            ,PostNo=#{PostNo}
+            ,Addr1=#{Addr1}
+            ,Addr2=#{Addr2}
+            ,BirthDay=#{BirthDay}
+        WHERE AccountId=#{AccountId} 
+    </update> 
+    
+    <delete id="delete"> 
+        DELETE 
+        FROM Account 
+        WHERE AccountId=#{AccountId} 
+    </delete> 
+
+    <select id="findById" parameterType="String" resultType="Account">
+        SELECT *
+        FROM Account
+        WHERE AccountId = #{id}
+    </select>
+
+</mapper>
