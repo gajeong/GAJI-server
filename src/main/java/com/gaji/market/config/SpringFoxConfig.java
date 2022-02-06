@@ -30,7 +30,7 @@ public class SpringFoxConfig {
      * 추가 설정으로 문서화를 커스터마이징 할 수 있음
      */
     private ApiInfo swaggerInfo() {
-      return new ApiInfoBuilder().title("market Web Service API Documentation").description("다트미디어 인트라넷 웹 서비스API 문서 - 개발용")
+      return new ApiInfoBuilder().title("market Web Service API Documentation").description("웹 서비스API 문서 - 개발용")
           .license("DartDev").licenseUrl("https://dartmeda.co.kr/").version("1").build();
     }
 }
