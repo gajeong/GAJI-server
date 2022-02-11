@@ -22,30 +22,11 @@
         INSERT 
         INTO Account
                 (AccountId
-                ,tpAccount
-                ,AccountNm
-                ,Password
-                ,PhoneNo
-                ,ExchangeNo
-                ,MobileNo
-                ,eMail
-                ,PostNo
-                ,Addr1
-                ,Addr2
-                ,BirthDay) 
+                ,AccountNm) 
         VALUES
                 (#{AccountId}
-                ,#{tpAccount}
                 ,#{AccountNm}
-                ,#{Password}
-                ,#{PhoneNo}
-                ,#{ExchangeNo}
-                ,#{MobileNo}
-                ,#{eMail}
-                ,#{PostNo}
-                ,#{Addr1}
-                ,#{Addr2}
-                ,#{BirthDay}) 
+              ) 
     </insert> <!-- insert, update는 리턴타입 없다. select만 --> 
     
     <update id="update"> 
