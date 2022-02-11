@@ -11,7 +11,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 public class Board {
-    private Integer bid;
+    private int bid;
     private String uid;
     private String title;
     private String content;
