@@ -56,7 +56,7 @@ public class BoardController {
         }
         return ResponseEntity.ok().body(result);
     }
-
+    
     @ApiOperation(value = "Board 개별 등록", notes = "Board 개별 등록")
     @PutMapping("/")    // PUT HTTP 메서드
     public ResponseEntity<?> create(@Valid @RequestBody Board board) {
