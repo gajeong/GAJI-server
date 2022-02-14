@@ -27,44 +27,33 @@ import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * 컨트롤러 설정
- * API 호출시 사용되는 최상단 접근부분
- * 실제로 필터, 인터셉터가 더 있으나 현재는 교육중으로 무시
- */
-@Slf4j  // 로그기능 활성화
-@Api(tags = {"4. Board"}) // SWAGGER 설정
+@Slf4j  
+@Api(tags = {"4. Board"}) 
 @RequiredArgsConstructor
-@RestController // REST컨트롤러 설정
-@RequestMapping("/board") // 최상단 API 경로 설정
+@RestController 
+@RequestMapping("/board") 
 public class BoardController {
 
     private final ResponseService responseService;
     private final BoardService boardService;
 
-    @ApiOperation(value = "Board 리스트 전체 조회", notes = "Board 리스트 전체 조회")   // SWAGGER 문서 설정
-    @GetMapping("/findAll") // GET HTTP 메서드, API 경로 설정
+    @ApiOperation(value = "Board 리스트 전체 조회", notes = "Board 리스트 전체 조회") 
+    @GetMapping("/findAll")
     public ResponseEntity<?> findAll() {
 
-        // GET HTTP 메서드인 경우 결과값을 리턴해주기때문에 MultiResult or SingleResult로 담아서 리턴
         MultiResult<Board> result = null;
 
         try {
-            // 서비스를 통해 전체 조회
             List<Board> findBoard = boardService.findAll();
-
-            // 조회한 결과값이 1개 이상인 경우 결과출력
             if(findBoard.size()>0)
                 result = responseService.getMultiResult(findBoard);
-            else    // 없는 경우 NODATA로 응답
-                result = responseService.getMultiFailType(CommonResponse.NODATA); // 데이터 없음으로 응답, CommonResponse에 사전에 선언된 결과값이 있음
+            else   
+                result = responseService.getMultiFailType(CommonResponse.NODATA); 
 
         } catch (Exception e) {
             log.error("처리중 예외 : " + e.getMessage());
-            result = responseService.getMultiFailType(ResponseService.CommonResponse.ERR);  // 예외 발생시 에러로 응답
+            result = responseService.getMultiFailType(ResponseService.CommonResponse.ERR);  
         }
-
-        // 해당 결과값을 API 응답으로 리턴
         return ResponseEntity.ok().body(result);
     }
 
@@ -72,21 +61,17 @@ public class BoardController {
     @PutMapping("/")    // PUT HTTP 메서드
     public ResponseEntity<?> create(@Valid @RequestBody Board board) {
 
-        // PUT, POST, DELETE HTTP 메서드는 데이터 응답이 아닌 결과만 알려주면 되므로 CommonResult로 리턴
         CommonResult result = null;
 
         try {
             
-            // 계정이 비어있는지 확인
             if(board.getBid()!=0)
             {
-                // 추가하는 계정이 존재하는지 확인하기 위해 조회
                 Board readBoard = boardService.read(board.getBid());
 
                 if(readBoard!=null)
                 {
-                    // 계정이 존재하는 경우
-                    result = responseService.getSingleFailType(CommonResponse.EXIST);   // 기존에 등록된 정보가 있음으로 응답
+                    result = responseService.getSingleFailType(CommonResponse.EXIST);  
                 }
                 else
                 {
@@ -97,8 +82,7 @@ public class BoardController {
             }
             else
             {
-                // 계정이 비어있는경우
-                result = responseService.getSingleFailType(CommonResponse.EMPTY_ID);    // 빈계정 알림
+                result = responseService.getSingleFailType(CommonResponse.EMPTY_ID);  
             }
 
         } catch (Exception e) {
@@ -111,7 +95,7 @@ public class BoardController {
     
 
     @ApiOperation(value = "Board 개별 수정", notes = "Board 개별 수정")
-    @PostMapping("/")   // POST HTTP 메서드
+    @PostMapping("/")  
     public ResponseEntity<?> update(@Valid @RequestBody Board board) {
 
         CommonResult result = null;
@@ -148,17 +132,15 @@ public class BoardController {
 
 
     @ApiOperation(value = "Board 개별 삭제", notes = "Board 개별 삭제")
-    @DeleteMapping("/{bid}")  // DELETE HTTP 메서드
+    @DeleteMapping("/{bid}") 
     public ResponseEntity<?> delete(@ApiParam(value = "게시판 ID", required = true) @PathVariable("bid") int bid) {
         CommonResult result = null;
         try {
 
-            // 계정이 존재하는지 확인
             Board board = boardService.read(bid);
 
             if(board!=null)
             {
-                // 계정이 존재하는 경우 삭제
                 boardService.delete(bid);
 
                 result = responseService.getSingleResult(CommonResponse.SUCCESS);   
