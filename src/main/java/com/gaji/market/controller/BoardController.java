@@ -70,7 +70,7 @@ public class BoardController {
 
     @ApiOperation(value = "Board 개별 등록", notes = "Board 개별 등록")
     @PutMapping("/")    // PUT HTTP 메서드
-    public ResponseEntity<?> create(@Valid @RequestBody Board Board) {
+    public ResponseEntity<?> create(@Valid @RequestBody Board board) {
 
         // PUT, POST, DELETE HTTP 메서드는 데이터 응답이 아닌 결과만 알려주면 되므로 CommonResult로 리턴
         CommonResult result = null;
@@ -78,10 +78,10 @@ public class BoardController {
         try {
             
             // 계정이 비어있는지 확인
-            if(Board.getBid()!=0)
+            if(board.getBid()!=0)
             {
                 // 추가하는 계정이 존재하는지 확인하기 위해 조회
-                Board readBoard = boardService.read(Board.getBid());
+                Board readBoard = boardService.read(board.getBid());
 
                 if(readBoard!=null)
                 {
@@ -90,7 +90,7 @@ public class BoardController {
                 }
                 else
                 {
-                  boardService.create(Board);
+                  boardService.create(board);
     
                     result = responseService.getSuccessResult();                    
                 }
@@ -112,19 +112,19 @@ public class BoardController {
 
     @ApiOperation(value = "Board 개별 수정", notes = "Board 개별 수정")
     @PostMapping("/")   // POST HTTP 메서드
-    public ResponseEntity<?> update(@Valid @RequestBody Board Board) {
+    public ResponseEntity<?> update(@Valid @RequestBody Board board) {
 
         CommonResult result = null;
 
         try {
             
-            if(Board.getBid()!=0)
+            if(board.getBid()!=0)
             {
-                Board readBoard = boardService.read(Board.getBid());
+                Board readBoard = boardService.read(board.getBid());
 
                 if(readBoard!=null)
                 {
-                  boardService.update(Board);
+                  boardService.update(board);
 
                     result = responseService.getSuccessResult();
                 }else

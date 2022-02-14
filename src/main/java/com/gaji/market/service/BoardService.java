@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class BoardService implements BoardMapper{
 
-    @Resource(name="BoardMapper")
+    @Resource(name="boardMapper")
     BoardMapper mapper;
     
     @Override
@@ -58,8 +58,7 @@ public class BoardService implements BoardMapper{
     }
 
     @Override
-    public void delete(String id) throws Exception {
-      
+    public void delete(String bid) throws Exception {
       
     }
 

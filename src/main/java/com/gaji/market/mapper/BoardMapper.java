@@ -7,5 +7,5 @@ import com.gaji.market.dto.Board;
 public interface BoardMapper extends IMapper<Board>{
   public Board read (int id) throws Exception;
   public Board findByUid (String uid) throws Exception;
-  public void delete (int uid) throws Exception;
+  public void delete (int bid) throws Exception;
 }

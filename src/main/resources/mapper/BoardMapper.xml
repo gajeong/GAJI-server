@@ -12,7 +12,7 @@
     <select id="read" resultType="Board"> 
         SELECT  * 
         FROM    Board 
-        WHERE   BoardId=#{no} 
+        WHERE   bid=#{id} 
     </select> <!-- #을 쓰면 정수는 정수열, 문자는 문자열로, $는 String --> 
     
     <insert id="create"> 
@@ -44,7 +44,7 @@
             ,content=#{content}
             ,category=#{category}
             ,date=#{date}
-        WHERE BoardId=#{BoardId} 
+        WHERE bid=#{bid} 
     </update> 
     
     <delete id="delete"> 
