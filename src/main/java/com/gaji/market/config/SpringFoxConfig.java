@@ -17,20 +17,20 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @Configuration
 @EnableSwagger2
-public class SpringFoxConfig {              
-                          
-    @Bean
-    public Docket swaggerApi() {
-      return new Docket(DocumentationType.SWAGGER_2).apiInfo(swaggerInfo()).select()
-          .apis(RequestHandlerSelectors.basePackage("com.gaji.market.controller")) // API 컨트롤러 위치 설정
-          .paths(PathSelectors.any()).build().useDefaultResponseMessages(false);
-    }
-  
-    /**
-     * 추가 설정으로 문서화를 커스터마이징 할 수 있음
-     */
-    private ApiInfo swaggerInfo() {
-      return new ApiInfoBuilder().title("market Web Service API Documentation").description("다트미디어 인트라넷 웹 서비스API 문서 - 개발용")
-          .license("DartDev").licenseUrl("https://dartmeda.co.kr/").version("1").build();
-    }
+public class SpringFoxConfig {
+
+  @Bean
+  public Docket swaggerApi() {
+    return new Docket(DocumentationType.SWAGGER_2).apiInfo(swaggerInfo()).select()
+        .apis(RequestHandlerSelectors.basePackage("com.gaji.market.controller")) // API 컨트롤러 위치 설정
+        .paths(PathSelectors.any()).build().useDefaultResponseMessages(false);
+  }
+
+  /**
+   * 추가 설정으로 문서화를 커스터마이징 할 수 있음
+   */
+  private ApiInfo swaggerInfo() {
+    return new ApiInfoBuilder().title("market Web Service API Documentation").description("가지마켓 웹 서비스API 문서")
+        .license("DartDev").licenseUrl("https://gajimarket.co.kr/").version("1").build();
+  }
 }

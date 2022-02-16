@@ -10,9 +10,9 @@ import com.gaji.market.mapper.TeamMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class TeamService implements TeamMapper{
+public class TeamService implements TeamMapper {
 
-    @Resource(name="teamMapper")
+    @Resource(name = "teamMapper")
     TeamMapper mapper;
 
     @Override
@@ -22,7 +22,7 @@ public class TeamService implements TeamMapper{
 
     @Override
     public List<Team> findAll() throws Exception {
-        //listAll()의 메소드명과 mapper.xml과 id는 동일해야한다.        
+        // listAll()의 메소드명과 mapper.xml과 id는 동일해야한다.
         return mapper.findAll();
     }
 
@@ -42,12 +42,12 @@ public class TeamService implements TeamMapper{
 
     @Override
     public void deleteByTeamNo(short teamNo) throws Exception {
-        mapper.deleteByTeamNo(teamNo);        
+        mapper.deleteByTeamNo(teamNo);
     }
 
     @Override
     public Team readByTeamNo(short teamNo) throws Exception {
         return mapper.readByTeamNo(teamNo);
     }
-    
+
 }
