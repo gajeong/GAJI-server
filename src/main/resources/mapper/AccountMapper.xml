@@ -42,7 +42,7 @@
             ,Addr1=#{Addr1}
             ,Addr2=#{Addr2}
             ,BirthDay=#{BirthDay}
-        WHERE AccountId=#{AccountId} 
+        WHERE AccountId=#{AccountId}
     </update> 
     
     <delete id="delete"> 
