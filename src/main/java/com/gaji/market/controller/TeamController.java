@@ -55,7 +55,7 @@ public class TeamController {
             log.error("처리중 예외 : " + e.getMessage());
             result = responseService.getMultiFailType(ResponseService.CommonResponse.ERR);
         }
-
+        
         return ResponseEntity.ok().body(result);
     }
 

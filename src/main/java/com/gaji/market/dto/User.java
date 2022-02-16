@@ -13,19 +13,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
- * Mybatis 에 사용
- * DB에 저장된 테이블과 매칭됨
- */
 @ToString
 @Getter
 @Setter
 @NoArgsConstructor
-public class Account {
-
-	// 파라미터 검증, NULL이면 오류 발생
-	@NotNull(message = "id는 필수 값입니다.")
-    private String AccountId;
-	private String AccountNm;
-
+public class User {
+    
+    @NotNull(message = "id는 필수입니다.")
+    private String uid;
+	private String pw;
+    private String nickname;
+    private Date birth;
+    private String phone;
+    private float manner;
+    private String intro;
 }
